@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="edu.jmi.dgsx.dao.student_attributeMapper">
+  <resultMap id="BaseResultMap" type="edu.jmi.dgsx.po.student_attribute">
+    <id column="student_id" jdbcType="INTEGER" property="studentId" />
+    <result column="student_name" jdbcType="VARCHAR" property="studentName" />
+    <result column="student_sex" jdbcType="VARCHAR" property="studentSex" />
+    <result column="student_grade" jdbcType="VARCHAR" property="studentGrade" />
+    <result column="weekly" jdbcType="VARCHAR" property="weekly" />
+    <result column="attendance" jdbcType="VARCHAR" property="attendance" />
+    <result column="inspection_results" jdbcType="INTEGER" property="inspectionResults" />
+    <result column="adviser" jdbcType="VARCHAR" property="adviser" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from student_attribute
+    where student_id = #{studentId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="edu.jmi.dgsx.po.student_attribute">
+    insert into student_attribute (student_id, student_name, student_sex, 
+      student_grade, weekly, attendance, 
+      inspection_results, adviser)
+    values (#{studentId,jdbcType=INTEGER}, #{studentName,jdbcType=VARCHAR}, #{studentSex,jdbcType=VARCHAR}, 
+      #{studentGrade,jdbcType=VARCHAR}, #{weekly,jdbcType=VARCHAR}, #{attendance,jdbcType=VARCHAR}, 
+      #{inspectionResults,jdbcType=INTEGER}, #{adviser,jdbcType=VARCHAR})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="edu.jmi.dgsx.po.student_attribute">
+    update student_attribute
+    set student_name = #{studentName,jdbcType=VARCHAR},
+      student_sex = #{studentSex,jdbcType=VARCHAR},
+      student_grade = #{studentGrade,jdbcType=VARCHAR},
+      weekly = #{weekly,jdbcType=VARCHAR},
+      attendance = #{attendance,jdbcType=VARCHAR},
+      inspection_results = #{inspectionResults,jdbcType=INTEGER},
+      adviser = #{adviser,jdbcType=VARCHAR}
+    where student_id = #{studentId,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select student_id, student_name, student_sex, student_grade, weekly, attendance, 
+    inspection_results, adviser
+    from student_attribute
+    where student_id = #{studentId,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select student_id, student_name, student_sex, student_grade, weekly, attendance, 
+    inspection_results, adviser
+    from student_attribute
+  </select>
+</mapper>

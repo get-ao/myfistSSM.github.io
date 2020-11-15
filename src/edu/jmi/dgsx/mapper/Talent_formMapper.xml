@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="edu.jmi.dgsx.dao.Talent_formMapper">
+  <resultMap id="BaseResultMap" type="edu.jmi.dgsx.po.Talent_form">
+    <id column="student_id" jdbcType="VARCHAR" property="studentId" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="sex" jdbcType="VARCHAR" property="sex" />
+    <result column="pro" jdbcType="VARCHAR" property="pro" />
+    <result column="job" jdbcType="VARCHAR" property="job" />
+    <result column="results" jdbcType="VARCHAR" property="results" />
+    <result column="score" jdbcType="VARCHAR" property="score" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from talent_form
+    where student_id = #{studentId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="edu.jmi.dgsx.po.Talent_form">
+    insert into talent_form (student_id, name, sex, pro, job, results,score)
+    values (#{studentId,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{sex,jdbcType=VARCHAR}, #{pro,jdbcType=VARCHAR}, #{job,jdbcType=VARCHAR}, #{results,jdbcType=VARCHAR},#{score,jdbcType=VARCHAR})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="edu.jmi.dgsx.po.Talent_form">
+    update talent_form
+    set name = #{name,jdbcType=VARCHAR},
+      sex = #{sex,jdbcType=VARCHAR},
+      pro = #{pro,jdbcType=VARCHAR},
+      job = #{job,jdbcType=VARCHAR},
+      results = #{results,jdbcType=VARCHAR},
+      score = #{score,jdbcType=VARCHAR}
+    where student_id = #{studentId,jdbcType=VARCHAR}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select student_id, name, sex, pro, job, results,score
+    from talent_form
+    where student_id = #{studentId,jdbcType=VARCHAR}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select student_id, name, sex, pro, job, results,score
+    from talent_form
+  </select>
+</mapper>

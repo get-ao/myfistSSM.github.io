@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="edu.jmi.dgsx.dao.adminMapper">
+  <resultMap id="BaseResultMap" type="edu.jmi.dgsx.po.admin">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="admin_user" jdbcType="VARCHAR" property="adminUser" />
+    <result column="admin_psw" jdbcType="VARCHAR" property="adminPsw" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from admin
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="edu.jmi.dgsx.po.admin">
+    insert into admin (id, name, admin_user, 
+      admin_psw)
+    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{adminUser,jdbcType=VARCHAR}, 
+      #{adminPsw,jdbcType=VARCHAR})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="edu.jmi.dgsx.po.admin">
+    update admin
+    set name = #{name,jdbcType=VARCHAR},
+      admin_user = #{adminUser,jdbcType=VARCHAR},
+      admin_psw = #{adminPsw,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select id, name, admin_user, admin_psw
+    from admin
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select id, name, admin_user, admin_psw
+    from admin
+  </select>
+  <select id="adminLogin" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select id, name, admin_user, admin_psw
+    from admin
+    where admin_user = #{admin_user,jdbcType=INTEGER} and admin_psw = #{admin_psw,jdbcType=INTEGER}
+  </select>
+</mapper>

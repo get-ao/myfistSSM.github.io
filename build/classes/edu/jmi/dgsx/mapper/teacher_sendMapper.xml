@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="edu.jmi.dgsx.dao.teacher_sendMapper">
+  <resultMap id="BaseResultMap" type="edu.jmi.dgsx.po.teacher_send">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="st_user" jdbcType="VARCHAR" property="stUser" />
+    <result column="st_name" jdbcType="VARCHAR" property="stName" />
+    <result column="studen_id" jdbcType="VARCHAR" property="studenId" />
+    <result column="student" jdbcType="VARCHAR" property="student" />
+    <result column="info" jdbcType="VARCHAR" property="info" />
+    <result column="time" jdbcType="TIMESTAMP" property="time" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from teacher_send
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="edu.jmi.dgsx.po.teacher_send">
+    insert into teacher_send (id, st_user, st_name, 
+      studen_id, student, info, 
+      time)
+    values (#{id,jdbcType=INTEGER}, #{stUser,jdbcType=VARCHAR}, #{stName,jdbcType=VARCHAR}, 
+      #{studenId,jdbcType=VARCHAR}, #{student,jdbcType=VARCHAR}, #{info,jdbcType=VARCHAR}, 
+      #{time,jdbcType=TIMESTAMP})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="edu.jmi.dgsx.po.teacher_send">
+    update teacher_send
+    set st_user = #{stUser,jdbcType=VARCHAR},
+      st_name = #{stName,jdbcType=VARCHAR},
+      studen_id = #{studenId,jdbcType=VARCHAR},
+      student = #{student,jdbcType=VARCHAR},
+      info = #{info,jdbcType=VARCHAR},
+      time = #{time,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select id, st_user, st_name, studen_id, student, info, time
+    from teacher_send
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select id, st_user, st_name, studen_id, student, info, time
+    from teacher_send
+  </select>
+</mapper>
